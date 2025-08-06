@@ -20,25 +20,19 @@
 
   <script>
   function enviarDados() {
-    const jogador = document.getElementById("jogador").value;
-    const pontos = document.getElementById("pontos").value;
-    const data = document.getElementById("data").value;
+  const jogador = encodeURIComponent(document.getElementById("jogador").value);
+  const pontos = encodeURIComponent(document.getElementById("pontos").value);
+  const data = encodeURIComponent(document.getElementById("data").value);
 
-    if (!jogador || !pontos || !data) {
-      alert("Preencha todos os campos!");
-      return;
-    }
+  if (!jogador || !pontos || !data) {
+    alert("Preencha todos os campos!");
+    return;
+  }
 
-    const dados = { jogador, pontos, data };
+  const url = `https://script.google.com/macros/s/AKfycbxJj36cIdgFIBbdggEZdz7tC5WeWaJQ76udsE-rn6gPH43UF4p0vxM0iQ_3VTLT0qz9qw/exec?jogador=${jogador}&pontos=${pontos}&data=${data}`;
 
-    fetch("https://script.google.com/macros/s/AKfycbxJj36cIdgFIBbdggEZdz7tC5WeWaJQ76udsE-rn6gPH43UF4p0vxM0iQ_3VTLT0qz9qw/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(dados)
-    })
-    .then(response => response.text())
+  fetch(url)
+    .then(res => res.text())
     .then(res => {
       console.log("Resposta:", res);
       alert("Dados enviados com sucesso!");
@@ -47,10 +41,11 @@
       console.error("Erro:", err);
       alert("Erro ao enviar os dados.");
     });
-  }
+}
 </script>
 </body>
 </html>
+
 
 
 
