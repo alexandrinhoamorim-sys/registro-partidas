@@ -1,60 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Registro de Partidas</title>
-</head>
-<body>
-  <h1>Registrar Partida</h1>
-  
-  <label for="jogador">Jogador:</label>
-  <input type="text" id="jogador"><br><br>
-  
-  <label for="pontos">Pontos:</label>
-  <input type="number" id="pontos"><br><br>
-  
-  <label for="data">Data:</label>
-  <input type="date" id="data"><br><br>
-  
-  <button onclick="enviarDados()">Enviar</button>
+<html>
+  <head><title>Teste</title></head>
+  <body>
+    <input id="jogador" placeholder="Jogador">
+    <input id="pontos" placeholder="Pontos">
+    <input id="data" type="date">
+    <button onclick="enviar()">Enviar</button>
 
-  <script>
-  function enviarDados() {
-  const jogador = document.getElementById("jogador").value;
-  const pontos = document.getElementById("pontos").value;
-  const data = document.getElementById("data").value;
+    <script>
+      function enviar() {
+        const jogador = document.getElementById("jogador").value;
+        const pontos = document.getElementById("pontos").value;
+        const data = document.getElementById("data").value;
 
-  if (!jogador || !pontos || !data) {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  const dados = { jogador, pontos, data };
-
-  fetch("https://script.google.com/macros/s/AKfycbxJj36cIdgFIBbdggEZdz7tC5WeWaJQ76udsE-rn6gPH43UF4p0vxM0iQ_3VTLT0qz9qw/exec", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ jogador: "Alex", pontos: 100, data: "2025-08-06" })
-})
-  .then(res => res.text())
-  .then(res => {
-    console.log("Resposta:", res);
-    alert("Dados enviados com sucesso!");
-  })
-  .catch(err => {
-    console.error("Erro:", err);
-    alert("Erro ao enviar os dados.");
-  });
-}
-</script>
-</body>
+        fetch("https://script.google.com/macros/s/AKfycbxJj36cIdgFIBbdggEZdz7tC5WeWaJQ76udsE-rn6gPH43UF4p0vxM0iQ_3VTLT0qz9qw/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ jogador, pontos, data })
+        })
+        .then(r => r.text())
+        .then(txt => alert("Resposta do servidor: " + txt))
+        .catch(err => alert("Erro: " + err));
+      }
+    </script>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
