@@ -12,16 +12,18 @@
         const jogador = document.getElementById("jogador").value;
         const pontos = document.getElementById("pontos").value;
         const data = document.getElementById("data").value;
-
-        fetch("https://script.google.com/macros/s/AKfycbxJj36cIdgFIBbdggEZdz7tC5WeWaJQ76udsE-rn6gPH43UF4p0vxM0iQ_3VTLT0qz9qw/exec", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ jogador, pontos, data })
-        })
-        .then(r => r.text())
-        .then(txt => alert("Resposta do servidor: " + txt))
-        .catch(err => alert("Erro: " + err));
-      }
+  const url = `https://script.google.com/macros/s/AKfycbxJj36cIdgFIBbdggEZdz7tC5WeWaJQ76udsE-rn6gPH43UF4p0vxM0iQ_3VTLT0qz9qw/exec?jogador=${jogador}&pontos=${pontos}&data=${data}`;
+        fetch(url)
+  .then(res => res.text())
+  .then(res => {
+    console.log("Resposta:", res);
+    alert("Dados enviados com sucesso!");
+  })
+  .catch(err => {
+    console.error("Erro:", err);
+    alert("Erro ao enviar os dados.");
+  });
     </script>
   </body>
 </html>
+
