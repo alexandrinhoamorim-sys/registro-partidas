@@ -32,12 +32,10 @@
   const dados = { jogador, pontos, data };
 
   fetch("https://script.google.com/macros/s/AKfycbxJj36cIdgFIBbdggEZdz7tC5WeWaJQ76udsE-rn6gPH43UF4p0vxM0iQ_3VTLT0qz9qw/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(dados)
-  })
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ jogador: "Alex", pontos: 100, data: "2025-08-06" })
+})
   .then(res => res.text())
   .then(res => {
     console.log("Resposta:", res);
@@ -51,6 +49,7 @@
 </script>
 </body>
 </html>
+
 
 
 
